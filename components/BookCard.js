@@ -1,56 +1,46 @@
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-export default function BookCard({ title, author, read, onToggleRead }) {
+export default function BookCard({ title, author, read }) {
   return (
     <View style={styles.card}>
-      <View style={styles.details}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.author}>by {author}</Text>
-
-        <Text style={[styles.status, read && styles.readStatus]}>
-          {read ? "Read" : "Unread"}
-        </Text>
-      </View>
-
-      <Button
-        title={read ? "Mark as unread" : "Mark as read"}
-        onPress={onToggleRead}
+      <Ionicons
+        name={read ? "checkmark-circle" : "book-outline"}
+        size={28}
+        color={read ? "#2e7d32" : "#555"}
+        style={styles.icon}
       />
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.author}>{author}</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    flexDirection: "column",
-    padding: 16,
-    marginBottom: 12,
-    backgroundColor: "#ffffff",
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#dbe2ea",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 12,
+    marginVertical: 6,
+    backgroundColor: "#f5f5f5",
+    borderRadius: 8,
+    elevation: 2,
   },
-  details: {
-    flexDirection: "column",
-    marginBottom: 12,
+  icon: {
+    marginRight: 12,
+  },
+  textContainer: {
+    flex: 1,
   },
   title: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
-    color: "#172033",
   },
   author: {
-    fontSize: 15,
-    color: "#526174",
-    marginTop: 4,
-  },
-  status: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: "#92400e",
-    marginTop: 10,
-  },
-  readStatus: {
-    color: "#166534",
+    fontSize: 14,
+    color: "#666",
+    marginTop: 2,
   },
 });
